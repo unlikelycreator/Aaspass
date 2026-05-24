@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* width */
+/* Target the horizontal scrollbar */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 4px; /* Adjust the height to make it thinner */
+}
+
+/* Style the scrollbar track */
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light background */
+  border-radius: 10px;
+}
+
+/* Style the scrollbar thumb */
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #888; /* Darker thumb */
+  border-radius: 10px;
+}
+
+/* Hover effect on scrollbar */
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox scrollbar */
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* This hides the scrollbar but still allows scrolling */
+.scrollbar-hidden {
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  scrollbar-width: none; /* For Firefox */
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;  /* For Chrome, Safari, and Opera */
+}
+
+/* In your global stylesheet or component */
+.zoomcharts-container,
+.zoomcharts-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100%;
+  display: block;           /* prevents inline whitespace issues */
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+    --radius: 0.5rem;
+
+    /* Sidebar light mode */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;           /* Pure black – true AMOLED */
+    --foreground: 0 0% 98%;          /* Bright white text */
+    --card: 0 0% 4%;                 /* Almost black (slight lift to avoid burn-in) */
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 243 75% 59%;          /* Vibrant indigo that pops on black */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 8%;            /* Very dark gray for secondary elements */
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 243 75% 59%;           /* Same vivid indigo */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 243 75% 59%;
+
+    /* Sidebar dark mode – pure black with subtle accents */
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 243 75% 59%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 12%;
+    --sidebar-ring: 243 75% 59%;
+
+    /* Force remove all gradients in dark mode */
+    background-image: none !important;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Global override: kill any gradient in dark mode */
+  .dark [class*="bg-gradient"],
+  .dark .bg-gradient-to-r,
+  .dark .bg-gradient-to-l,
+  .dark .bg-gradient-to-t,
+  .dark .bg-gradient-to-b,
+  .dark .bg-gradient-to-br,
+  .dark .bg-gradient-to-bl {
+    background-image: none !important;
+    background-color: #000000 !important;
+  }
+
+  /* Make sure cards/sidebar use card variable */
+  .dark .bg-white\/80,
+  .dark .bg-slate-50\/50,
+  .dark .bg-slate-900\/50 {
+    background-color: hsl(var(--card)) !important;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  background-color: #0f1010;
+}
+
+.dialog-content {
+  will-change: transform;
+  backface-visibility: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+.app {
+  height: 100vh;
+}
+
+.logo {
+  font-family: "Pathway Gothic One", sans-serif;
+  background-color: rgba(255, 255, 255, 0.623);
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+  /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(49, 49, 49);
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 3px solid white;
+  /* creates padding around scroll thumb */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+/* CHROME / EDGE / SAFARI */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* TRACK */
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+/* THUMB */
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 999px;
+  border: 2px solid #f1f5f9;
+}
+
+/* THUMB HOVER */
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* DARK MODE TRACK */
+.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+/* DARK MODE THUMB */
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border: 2px solid #0f172a;
+}
+
+/* DARK MODE HOVER */
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* FIREFOX */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
+}
+
+.dark * {
+  scrollbar-color: #334155 #0f172a;
+}
